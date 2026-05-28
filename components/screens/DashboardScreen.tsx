@@ -175,7 +175,7 @@ export function DashboardScreen({ onNav, openSheet }: DashboardScreenProps) {
   const overBudgets = BUDGETS.filter(b => b.spent > b.monthly);
 
   return (
-    <div className="dash-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 110, position: 'relative', overflow: 'hidden' }}>
+    <div className="dash-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 126, position: 'relative', overflow: 'hidden' }}>
       {/* decorative blob */}
       <div aria-hidden style={{
         position: 'absolute', top: -40, right: -60, width: 220, height: 220,

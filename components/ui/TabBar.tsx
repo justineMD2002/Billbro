@@ -59,7 +59,7 @@ export function TabBar({ active, onChange }: TabBarProps) {
 
   return (
     <div style={{
-      position: 'absolute', left: 16, right: 16, bottom: 8, zIndex: 30,
+      position: 'absolute', left: 16, right: 16, bottom: 20, zIndex: 30,
       borderRadius: 28, padding: '10px 12px',
       background: T.surface, boxShadow: T.cardShadow,
       display: 'flex', justifyContent: 'space-between', alignItems: 'center',

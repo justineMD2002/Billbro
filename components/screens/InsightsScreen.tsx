@@ -127,7 +127,7 @@ export function InsightsScreen() {
   };
 
   return (
-    <div className="insights-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 110, position: 'relative' }}>
+    <div className="insights-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 126, position: 'relative' }}>
       {/* decorative confetti */}
       <div aria-hidden style={{ position: 'absolute', top: 110, left: 24, width: 6, height: 6, background: T.pop, borderRadius: 2, transform: 'rotate(20deg)' }} />
       <div aria-hidden style={{ position: 'absolute', top: 80, right: 30, width: 8, height: 4, background: T.accent, borderRadius: 2, transform: 'rotate(-15deg)' }} />

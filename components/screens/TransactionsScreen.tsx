@@ -46,7 +46,7 @@ export function TransactionsScreen() {
   }, {});
 
   return (
-    <div className="txns-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 110 }}>
+    <div className="txns-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 126 }}>
       <Header subtitle="May 2026 · 32 transactions" title="Activity" />
 
       {/* Search bar with WalletBro */}

@@ -3,6 +3,7 @@
   "short_name": "BillBro",
   "description": "Your brother in budgeting",
   "start_url": "/app/home",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#EEFBF8",

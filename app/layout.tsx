@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Fraunces, Sora } from 'next/font/google';
+import { IosKeyboardFix } from '@/components/IosKeyboardFix';
 import './globals.css';
 
 const fraunces = Fraunces({
@@ -39,6 +40,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: 'cover',
   themeColor: '#FFF7EC',
+  interactiveWidget: 'resizes-content',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -47,7 +49,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <IosKeyboardFix />
+        {children}
+      </body>
     </html>
   );
 }

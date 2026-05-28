@@ -46,7 +46,7 @@ export function TransactionsScreen() {
   }, {});
 
   return (
-    <div style={{ background: T.bg, minHeight: '100%', paddingBottom: 110 }}>
+    <div className="txns-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 110 }}>
       <Header subtitle="May 2026 · 32 transactions" title="Activity" />
 
       {/* Search bar with WalletBro */}
@@ -76,56 +76,89 @@ export function TransactionsScreen() {
         </div>
       </div>
 
-      {/* Month filter w/ swipe hint */}
-      <div style={{ padding: '0 18px 14px', position: 'relative' }}>
-        <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none' }}>
-          {['Mar', 'Apr', 'May', 'Jun', 'Jul'].map((m) => (
-            <button key={m} style={{
-              padding: '8px 18px', borderRadius: 14, border: 'none',
-              background: m === 'May' ? T.ink : T.surface,
-              color: m === 'May' ? T.bg : T.ink2,
-              fontFamily: 'Sora', fontWeight: 600, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap',
-              boxShadow: m === 'May' ? T.cardShadow : 'none',
-            }}>{m} {m === 'May' ? '2026' : ''}</button>
+      {/* ── Desktop: [filters sidebar | list]; Mobile: stack ── */}
+      <div className="txns-layout">
+
+        {/* Filters sidebar */}
+        <div className="txns-sidebar">
+          {/* Month filter */}
+          <div style={{ padding: '0 18px 14px' }}>
+            <div style={{ fontFamily: 'Sora', fontWeight: 700, fontSize: 10, color: T.muted, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8 }}>Month</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              {['Mar', 'Apr', 'May', 'Jun', 'Jul'].map((m) => (
+                <button key={m} style={{
+                  padding: '8px 14px', borderRadius: 12, border: 'none', textAlign: 'left',
+                  background: m === 'May' ? T.ink : T.surface,
+                  color: m === 'May' ? T.bg : T.ink2,
+                  fontFamily: 'Sora', fontWeight: 600, fontSize: 13, cursor: 'pointer',
+                  boxShadow: m === 'May' ? T.cardShadow : 'none',
+                }}>{m} {m === 'May' ? '2026' : ''}</button>
+              ))}
+            </div>
+          </div>
+
+          {/* Type filter */}
+          <div style={{ padding: '0 18px 14px' }}>
+            <div style={{ fontFamily: 'Sora', fontWeight: 700, fontSize: 10, color: T.muted, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8 }}>Type</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <Pill active={filter === 'all'} onClick={() => setFilter('all')}>All</Pill>
+              <Pill active={filter === 'in'}  onClick={() => setFilter('in')}  color={T.good}>↓ Inflow</Pill>
+              <Pill active={filter === 'out'} onClick={() => setFilter('out')} color={T.pop}>↑ Outflow</Pill>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile-only: horizontal month strip + pill filters */}
+        <div className="txns-mobile-filters">
+          <div style={{ padding: '0 18px 14px', position: 'relative' }}>
+            <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none' }}>
+              {['Mar', 'Apr', 'May', 'Jun', 'Jul'].map((m) => (
+                <button key={m} style={{
+                  padding: '8px 18px', borderRadius: 14, border: 'none',
+                  background: m === 'May' ? T.ink : T.surface,
+                  color: m === 'May' ? T.bg : T.ink2,
+                  fontFamily: 'Sora', fontWeight: 600, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap',
+                  boxShadow: m === 'May' ? T.cardShadow : 'none',
+                }}>{m} {m === 'May' ? '2026' : ''}</button>
+              ))}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 4, color: T.muted, fontSize: 10, fontFamily: 'Sora', fontWeight: 500 }}>
+              <svg width="12" height="10" viewBox="0 0 12 10" fill="currentColor"><path d="M1 5h10M8 1l3 4-3 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              <span>swipe to change month</span>
+            </div>
+          </div>
+          <div style={{ padding: '0 18px 12px', display: 'flex', gap: 8 }}>
+            <Pill active={filter === 'all'} onClick={() => setFilter('all')}>All</Pill>
+            <Pill active={filter === 'in'}  onClick={() => setFilter('in')}  color={T.good}>↓ Inflow</Pill>
+            <Pill active={filter === 'out'} onClick={() => setFilter('out')} color={T.pop}>↑ Outflow</Pill>
+          </div>
+        </div>
+
+        {/* Grouped list */}
+        <div className="txns-list" style={{ padding: '0 18px' }}>
+          {Object.entries(grouped).map(([day, items]) => (
+            <div key={day} style={{ marginBottom: 14 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 4px 8px' }}>
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: T.accent }} />
+                <div style={{ fontFamily: 'Sora', fontWeight: 700, fontSize: 12, color: T.ink2, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{day}</div>
+                <div style={{ flex: 1, height: 1, background: `repeating-linear-gradient(90deg, ${T.muted}55 0 4px, transparent 4px 8px)` }} />
+                <div style={{ fontFamily: 'Sora', fontWeight: 600, fontSize: 11.5, color: T.muted }}>
+                  {(() => {
+                    const sum = items.reduce((s, t) => s + t.amount, 0);
+                    return (sum >= 0 ? '+' : '−') + peso(Math.abs(sum));
+                  })()}
+                </div>
+              </div>
+              <Card style={{ overflow: 'hidden' }}>
+                {items.map((t, i) => (
+                  <TxnRow key={t.id} t={t} divider={i < items.length - 1} />
+                ))}
+              </Card>
+            </div>
           ))}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 4, color: T.muted, fontSize: 10, fontFamily: 'Sora', fontWeight: 500 }}>
-          <svg width="12" height="10" viewBox="0 0 12 10" fill="currentColor"><path d="M1 5h10M8 1l3 4-3 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          <span>swipe to change month</span>
-        </div>
-      </div>
 
-      {/* Type filter chips */}
-      <div style={{ padding: '0 18px 12px', display: 'flex', gap: 8 }}>
-        <Pill active={filter === 'all'} onClick={() => setFilter('all')}>All</Pill>
-        <Pill active={filter === 'in'}  onClick={() => setFilter('in')}  color={T.good}>↓ Inflow</Pill>
-        <Pill active={filter === 'out'} onClick={() => setFilter('out')} color={T.pop}>↑ Outflow</Pill>
-      </div>
-
-      {/* Grouped list */}
-      <div style={{ padding: '0 18px' }}>
-        {Object.entries(grouped).map(([day, items]) => (
-          <div key={day} style={{ marginBottom: 14 }}>
-            {/* illustrated divider */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 4px 8px' }}>
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: T.accent }} />
-              <div style={{ fontFamily: 'Sora', fontWeight: 700, fontSize: 12, color: T.ink2, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{day}</div>
-              <div style={{ flex: 1, height: 1, background: `repeating-linear-gradient(90deg, ${T.muted}55 0 4px, transparent 4px 8px)` }} />
-              <div style={{ fontFamily: 'Sora', fontWeight: 600, fontSize: 11.5, color: T.muted }}>
-                {(() => {
-                  const sum = items.reduce((s, t) => s + t.amount, 0);
-                  return (sum >= 0 ? '+' : '−') + peso(Math.abs(sum));
-                })()}
-              </div>
-            </div>
-            <Card style={{ overflow: 'hidden' }}>
-              {items.map((t, i) => (
-                <TxnRow key={t.id} t={t} divider={i < items.length - 1} />
-              ))}
-            </Card>
-          </div>
-        ))}
-      </div>
+      </div>{/* end txns-layout */}
     </div>
   );
 }

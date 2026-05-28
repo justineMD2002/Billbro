@@ -14,7 +14,7 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [dark, setDark] = useState(false);
-  const [paletteKey] = useState<PaletteKey>('surprise');
+  const [paletteKey] = useState<PaletteKey>('tropical');
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');

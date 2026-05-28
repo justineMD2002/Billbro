@@ -112,6 +112,76 @@ input  { font-family: inherit; }
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
+/* ── Screen-level desktop grids ── */
+
+/* Mobile defaults: sidebar and mobile-only elements */
+.txns-sidebar   { display: none; }
+.txns-list      { padding-top: 0; }
+
+@media (min-width: 768px) {
+
+  /* Shared: remove excess tab-bar bottom padding */
+  .dash-screen, .insights-screen, .txns-screen, .cats-screen {
+    padding-bottom: 40px !important;
+  }
+
+  /* ── Dashboard: 2-column ── */
+  .dash-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 4px;
+    align-items: start;
+    padding: 0 4px;
+  }
+
+  /* ── Insights: [donut | trend] then 2x2 tips ── */
+  .insights-charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 4px;
+    align-items: start;
+    padding: 0 4px;
+  }
+  .tips-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    flex-direction: unset !important;
+    gap: 10px !important;
+    padding: 0 22px 14px !important;
+  }
+
+  /* ── Transactions: sidebar + list ── */
+  .txns-layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: start;
+  }
+  .txns-sidebar {
+    display: block;
+    padding-top: 4px;
+    position: sticky;
+    top: 0;
+  }
+  .txns-mobile-filters { display: none; }
+  .txns-list { padding: 0 18px 0 0; }
+
+  /* ── Categories: hero left | 2-col cards right ── */
+  .cats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 4px;
+    align-items: start;
+    padding: 0 4px;
+  }
+  .cats-cards-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    flex-direction: unset !important;
+    padding: 0 14px 0 0 !important;
+  }
+  .cats-col-right { padding-bottom: 14px; }
+}
+
 /* ─── Landing page responsive ─── */
 
 /* Nav */

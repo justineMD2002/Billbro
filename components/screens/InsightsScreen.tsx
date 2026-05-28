@@ -127,7 +127,7 @@ export function InsightsScreen() {
   };
 
   return (
-    <div style={{ background: T.bg, minHeight: '100%', paddingBottom: 110, position: 'relative' }}>
+    <div className="insights-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 110, position: 'relative' }}>
       {/* decorative confetti */}
       <div aria-hidden style={{ position: 'absolute', top: 110, left: 24, width: 6, height: 6, background: T.pop, borderRadius: 2, transform: 'rotate(20deg)' }} />
       <div aria-hidden style={{ position: 'absolute', top: 80, right: 30, width: 8, height: 4, background: T.accent, borderRadius: 2, transform: 'rotate(-15deg)' }} />
@@ -159,50 +159,59 @@ export function InsightsScreen() {
         </div>
       </div>
 
-      {/* DONUT — Category breakdown */}
-      <div style={{ padding: '4px 22px 8px' }}>
-        <SectionLabel>Where it went</SectionLabel>
-      </div>
-      <div style={{ padding: '0 18px 14px' }}>
-        <Card style={{ padding: '14px 16px', display: 'flex', gap: 14, alignItems: 'center' }}>
-          <div style={{ flexShrink: 0, position: 'relative' }}>
-            <svg width="180" height="180" viewBox="0 0 180 180">
-              <circle cx={CX} cy={CY} r={R} stroke={T.surface2} strokeWidth={SW} fill="none" />
-              {arcs.map(a => (
-                <path key={a.cat} d={arcPath(a.start + 0.005, a.end - 0.005)}
-                  stroke={CATEGORIES[a.cat]?.bg} strokeWidth={SW} fill="none" strokeLinecap="round" />
-              ))}
-              <text x={CX} y={CY - 4} textAnchor="middle" fontFamily="Fraunces, serif" fontSize="11" fontWeight="600" fill={T.muted} letterSpacing="0.06em">SPENT</text>
-              <text x={CX} y={CY + 16} textAnchor="middle" fontFamily="Fraunces, serif" fontSize="22" fontWeight="700" fill={T.ink} letterSpacing="-0.02em">{peso(total, { compact: true })}</text>
-            </svg>
-          </div>
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 7 }}>
-            {donut.map(d => (
-              <div key={d.cat} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <div style={{ width: 10, height: 10, borderRadius: 3, background: CATEGORIES[d.cat]?.bg, flexShrink: 0 }} />
-                <div style={{ flex: 1, fontSize: 11.5, fontFamily: 'Sora', fontWeight: 600, color: T.ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{CATEGORIES[d.cat]?.label}</div>
-                <div style={{ fontSize: 10.5, fontFamily: 'Sora', fontWeight: 700, color: T.ink2 }}>{Math.round(d.spent / total * 100)}%</div>
-              </div>
-            ))}
-          </div>
-        </Card>
-      </div>
+      {/* ── Desktop: [donut | trend] side-by-side; Mobile: stack ── */}
+      <div className="insights-charts-grid">
 
-      {/* TREND LINE — 6 months */}
-      <div style={{ padding: '4px 22px 8px' }}>
-        <SectionLabel>6-month trend</SectionLabel>
-      </div>
-      <div style={{ padding: '0 18px 14px' }}>
-        <Card style={{ padding: '16px 14px 10px' }}>
-          <TrendChart data={TREND_6MO} />
-        </Card>
-      </div>
+        {/* DONUT — Category breakdown */}
+        <div>
+          <div style={{ padding: '4px 22px 8px' }}>
+            <SectionLabel>Where it went</SectionLabel>
+          </div>
+          <div style={{ padding: '0 18px 14px' }}>
+            <Card style={{ padding: '14px 16px', display: 'flex', gap: 14, alignItems: 'center' }}>
+              <div style={{ flexShrink: 0, position: 'relative' }}>
+                <svg width="180" height="180" viewBox="0 0 180 180">
+                  <circle cx={CX} cy={CY} r={R} stroke={T.surface2} strokeWidth={SW} fill="none" />
+                  {arcs.map(a => (
+                    <path key={a.cat} d={arcPath(a.start + 0.005, a.end - 0.005)}
+                      stroke={CATEGORIES[a.cat]?.bg} strokeWidth={SW} fill="none" strokeLinecap="round" />
+                  ))}
+                  <text x={CX} y={CY - 4} textAnchor="middle" fontFamily="Fraunces, serif" fontSize="11" fontWeight="600" fill={T.muted} letterSpacing="0.06em">SPENT</text>
+                  <text x={CX} y={CY + 16} textAnchor="middle" fontFamily="Fraunces, serif" fontSize="22" fontWeight="700" fill={T.ink} letterSpacing="-0.02em">{peso(total, { compact: true })}</text>
+                </svg>
+              </div>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 7 }}>
+                {donut.map(d => (
+                  <div key={d.cat} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <div style={{ width: 10, height: 10, borderRadius: 3, background: CATEGORIES[d.cat]?.bg, flexShrink: 0 }} />
+                    <div style={{ flex: 1, fontSize: 11.5, fontFamily: 'Sora', fontWeight: 600, color: T.ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{CATEGORIES[d.cat]?.label}</div>
+                    <div style={{ fontSize: 10.5, fontFamily: 'Sora', fontWeight: 700, color: T.ink2 }}>{Math.round(d.spent / total * 100)}%</div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* TREND LINE — 6 months */}
+        <div>
+          <div style={{ padding: '4px 22px 8px' }}>
+            <SectionLabel>6-month trend</SectionLabel>
+          </div>
+          <div style={{ padding: '0 18px 14px' }}>
+            <Card style={{ padding: '16px 14px 10px' }}>
+              <TrendChart data={TREND_6MO} />
+            </Card>
+          </div>
+        </div>
+
+      </div>{/* end insights-charts-grid */}
 
       {/* AI SUGGESTION CARDS */}
       <div style={{ padding: '4px 22px 8px' }}>
         <SectionLabel>Bro&apos;s tips</SectionLabel>
       </div>
-      <div style={{ padding: '0 18px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="tips-grid" style={{ padding: '0 18px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <SuggestionCard mood="coaching"
           tag="PLAN" tagColor={T.accent}
           title={`${peso(dailyAllowance())}/day until next payday`}

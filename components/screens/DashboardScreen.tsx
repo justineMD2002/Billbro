@@ -176,7 +176,7 @@ export function DashboardScreen({ onNav, openSheet }: DashboardScreenProps) {
   const overBudgets = BUDGETS.filter(b => b.spent > b.monthly);
 
   return (
-    <div style={{ background: T.bg, minHeight: '100%', paddingBottom: 110, position: 'relative' }}>
+    <div className="dash-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 110, position: 'relative' }}>
       {/* decorative blob */}
       <div aria-hidden style={{
         position: 'absolute', top: -40, right: -60, width: 220, height: 220,
@@ -191,6 +191,12 @@ export function DashboardScreen({ onNav, openSheet }: DashboardScreenProps) {
 
       {/* NOTIFICATION BAR */}
       <NotificationBar T={T} />
+
+      {/* ── Desktop: 2-column grid; Mobile: stack ── */}
+      <div className="dash-grid">
+
+      {/* ── LEFT COLUMN ── */}
+      <div className="dash-col-a">
 
       {/* SALARY CYCLE CARD (hero) */}
       <div style={{ padding: '0 18px 14px' }}>
@@ -267,6 +273,11 @@ export function DashboardScreen({ onNav, openSheet }: DashboardScreenProps) {
         </Card>
       </div>
 
+      </div>{/* end dash-col-a */}
+
+      {/* ── RIGHT COLUMN ── */}
+      <div className="dash-col-b">
+
       {/* LOCKED-IN OBLIGATIONS */}
       <div style={{ padding: '4px 22px 8px' }}>
         <SectionLabel action="Manage">Locked in this month</SectionLabel>
@@ -303,6 +314,9 @@ export function DashboardScreen({ onNav, openSheet }: DashboardScreenProps) {
           ))}
         </Card>
       </div>
+
+      </div>{/* end dash-col-b */}
+      </div>{/* end dash-grid */}
     </div>
   );
 }

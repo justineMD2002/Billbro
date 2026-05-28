@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from '@/context/ThemeContext';
+import { Logo } from '@/components/ui/Logo';
 
 function NavIcon({ icon, active }: { icon: string; active: boolean }) {
   const sw = 2.2;
@@ -69,10 +70,8 @@ export function Sidebar({ onAdd }: { onAdd: () => void }) {
     }}>
       {/* Brand */}
       <div style={{ padding: '0 10px', marginBottom: 36 }}>
-        <div style={{ fontFamily: "'Fraunces', serif", fontSize: 22, fontWeight: 700, color: T.ink, letterSpacing: '-0.02em' }}>
-          BillBro
-        </div>
-        <div style={{ fontSize: 11, color: T.muted, marginTop: 3, fontWeight: 500 }}>
+        <Logo size={30} textColor={T.ink} textSize={20} />
+        <div style={{ fontSize: 11, color: T.muted, marginTop: 6, fontWeight: 500 }}>
           your brother in budgeting
         </div>
       </div>

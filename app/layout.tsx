@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   title: 'BillBro — Your brother in budgeting',
   description: 'Track expenses, manage budgets, and crush your savings goals. BillBro has your back.',
   manifest: '/manifest.json',
+  icons: {
+    icon: '/icons/icon.svg',
+    shortcut: '/icons/icon.svg',
+    apple: '/icons/apple-touch-icon.png',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { LandingMascot } from '@/components/landing/LandingMascot';
+import { Logo } from '@/components/ui/Logo';
 
 const FEATURES = [
   { icon: '📊', title: 'Salary cycle', desc: 'See exactly how much you can spend per day until your next paycheck.' },
@@ -19,9 +20,7 @@ export default function LandingPage() {
         WebkitBackdropFilter: 'blur(12px)',
       }}>
         <div className="landing-nav-inner">
-          <span style={{ fontFamily: 'var(--font-fraunces), serif', fontSize: 22, fontWeight: 700, color: '#1B1638' }}>
-            BillBro
-          </span>
+          <Logo size={32} textColor="#1B1638" textSize={20} />
           <Link href="/login" style={{
             padding: '10px 20px', borderRadius: 14, border: '1.5px solid #A88BFF',
             color: '#A88BFF', fontSize: 14, fontWeight: 600,
@@ -46,17 +45,20 @@ export default function LandingPage() {
             Your brother in budgeting 💪
           </div>
 
-          <h1 style={{
-            fontFamily: 'var(--font-fraunces), serif',
-            fontSize: 'clamp(52px, 10vw, 80px)',
-            fontWeight: 700, color: '#1B1638', letterSpacing: '-0.04em', lineHeight: 0.95,
-            margin: '0 0 20px',
-          }}>
-            BillBro
-            <span style={{ display: 'block', fontStyle: 'italic', fontWeight: 400, fontSize: '40%', marginTop: 12, opacity: 0.75 }}>
-              your money, your rules.
-            </span>
-          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '0 0 12px' }}>
+            <Logo size={64} showText={false} />
+            <h1 style={{
+              fontFamily: 'var(--font-fraunces), serif',
+              fontSize: 'clamp(52px, 10vw, 80px)',
+              fontWeight: 700, color: '#1B1638', letterSpacing: '-0.04em', lineHeight: 0.95,
+              margin: 0,
+            }}>
+              BillBro
+            </h1>
+          </div>
+          <p style={{ fontFamily: 'var(--font-fraunces), serif', fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px, 3vw, 22px)', color: '#4A4368', opacity: 0.75, margin: '0 0 16px' }}>
+            your money, your rules.
+          </p>
 
           <p style={{ fontSize: 17, color: '#4A4368', lineHeight: 1.6, maxWidth: 400, margin: '0 auto 36px' }}>
             Track expenses, crush savings goals, and get real-time budget advice — all with a little bro energy.

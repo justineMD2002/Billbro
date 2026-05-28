@@ -25,17 +25,18 @@ export async function middleware(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser();
 
   const pathname = request.nextUrl.pathname;
-  const isAppRoute = pathname.startsWith('/app');
+  const isAppRoute = pathname === '/home' || pathname === '/txns' || pathname === '/insights'
+    || pathname === '/cats' || pathname === '/budgets' || pathname === '/loans' || pathname === '/settings';
   const isAuthRoute = pathname === '/login' || pathname === '/signup';
 
-  // Redirect unauthenticated users away from /app/*
+  // Redirect unauthenticated users away from protected routes
   if (isAppRoute && !user) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
   // Redirect authenticated users away from auth pages
   if (isAuthRoute && user) {
-    return NextResponse.redirect(new URL('/app/home', request.url));
+    return NextResponse.redirect(new URL('/home', request.url));
   }
 
   return supabaseResponse;

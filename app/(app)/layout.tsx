@@ -6,6 +6,7 @@ import { ThemeProvider, useTheme } from '@/context/ThemeContext';
 import { TabBar } from '@/components/ui/TabBar';
 import { Sidebar } from '@/components/ui/Sidebar';
 import { AddSheet } from '@/components/screens/AddSheet';
+import { WebTopBar } from '@/components/web/WebTopBar';
 
 function AppShell({ children }: { children: React.ReactNode }) {
   const { T } = useTheme();
@@ -16,21 +17,31 @@ function AppShell({ children }: { children: React.ReactNode }) {
   const tabFromPath = () => {
     if (pathname.includes('/txns')) return 'txns';
     if (pathname.includes('/insights')) return 'insights';
-    if (pathname.includes('/cats')) return 'cats';
+    if (pathname.includes('/budgets')) return 'budgets';
+    if (pathname.includes('/loans')) return 'loans';
+    if (pathname.includes('/settings')) return 'settings';
     return 'home';
   };
 
   function handleTabChange(id: string) {
     if (id === 'add') { setSheetOpen(true); return; }
     setSheetOpen(false);
-    router.push(`/app/${id === 'home' ? 'home' : id}`);
+    const routes: Record<string, string> = {
+      home: '/home',
+      txns: '/txns',
+      insights: '/insights',
+      budgets: '/budgets',
+      loans: '/loans',
+      settings: '/settings',
+    };
+    router.push(routes[id] ?? '/home');
   }
 
   return (
     <div className="app-shell-bg" style={{ position: 'fixed', inset: 0, background: T.bg }}>
       <div className="app-shell-frame" style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
-        {/* Sidebar — hidden on mobile, shown on desktop via CSS */}
+        {/* hidden on mobile, shown on desktop via CSS */}
         <div className="app-sidebar-slot" style={{ display: 'none' }}>
           <Sidebar onAdd={() => setSheetOpen(true)} />
         </div>
@@ -41,17 +52,18 @@ function AppShell({ children }: { children: React.ReactNode }) {
           overflow: 'hidden', minHeight: 0,
           position: 'relative', background: T.bg,
         }}>
-          {/* Scrollable content */}
+          <div className="web-topbar-wrap">
+            <WebTopBar />
+          </div>
+
           <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'none' }}>
             <div className="screen-content-wrap">
               {children}
             </div>
           </div>
 
-          {/* Add sheet overlay — positioned inside main area */}
           {sheetOpen && <AddSheet onClose={() => setSheetOpen(false)} />}
 
-          {/* Tab bar — hidden on desktop via CSS */}
           <div className="app-tab-bar-wrap" style={{
             flexShrink: 0, position: 'relative',
             height: 'calc(80px + env(safe-area-inset-bottom, 0px))',

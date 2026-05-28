@@ -9,7 +9,6 @@ import {
 import { CATEGORIES, CategoryIcon } from '@/lib/categories';
 import { peso } from '@/lib/theme';
 import { WalletBro } from '@/components/mascot/WalletBro';
-import { NotificationBar } from '@/components/ui/NotificationBar';
 import { Header } from '@/components/ui/Header';
 import { Card, SectionLabel } from '@/components/ui/Card';
 
@@ -188,9 +187,6 @@ export function DashboardScreen({ onNav, openSheet }: DashboardScreenProps) {
         subtitle="May 28 · Thursday"
         title="Sup, Jamie 👋"
       />
-
-      {/* NOTIFICATION BAR */}
-      <NotificationBar T={T} />
 
       {/* ── Desktop: 2-column grid; Mobile: stack ── */}
       <div className="dash-grid">

@@ -8,19 +8,22 @@ interface ThemeContextValue {
   dark: boolean;
   toggleDark: () => void;
   paletteKey: PaletteKey;
+  changePalette: (k: PaletteKey) => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [dark, setDark] = useState(false);
-  const [paletteKey] = useState<PaletteKey>('tropical');
+  const [paletteKey, setPaletteKey] = useState<PaletteKey>('tropical');
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     setDark(mq.matches);
     const saved = localStorage.getItem('billbro-dark');
     if (saved !== null) setDark(saved === 'true');
+    const savedPalette = localStorage.getItem('billbro-palette');
+    if (savedPalette) setPaletteKey(savedPalette as PaletteKey);
   }, []);
 
   const toggleDark = () => {
@@ -28,6 +31,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('billbro-dark', String(!d));
       return !d;
     });
+  };
+
+  const changePalette = (k: PaletteKey) => {
+    localStorage.setItem('billbro-palette', k);
+    setPaletteKey(k);
   };
 
   const T = getTokens(paletteKey, dark);
@@ -39,7 +47,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [T.bg]);
 
   return (
-    <ThemeContext.Provider value={{ T, dark, toggleDark, paletteKey }}>
+    <ThemeContext.Provider value={{ T, dark, toggleDark, paletteKey, changePalette }}>
       <div style={{ background: T.bg, minHeight: '100%' }}>
         {children}
       </div>

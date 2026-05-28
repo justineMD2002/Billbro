@@ -22,7 +22,7 @@ export function LoginForm() {
       setError(error.message);
       setLoading(false);
     } else {
-      router.push('/app/home');
+      router.push('/home');
       router.refresh();
     }
   }

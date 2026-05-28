@@ -182,6 +182,29 @@ textarea { touch-action: manipulation; -webkit-user-select: auto; user-select: a
   .cats-col-right { padding-bottom: 14px; }
 }
 
+/* Web TopBar: hidden on mobile, shown on desktop */
+.web-topbar-wrap {
+  display: none;
+}
+@media (min-width: 768px) {
+  .web-topbar-wrap {
+    display: block;
+    flex-shrink: 0;
+  }
+  /* Remove max-width constraint for web screens so they fill full width */
+  .screen-content-wrap {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  /* Web views: show on desktop */
+  .web-view { display: block; }
+  .mobile-view { display: none !important; }
+}
+/* Mobile: hide web views */
+.web-view { display: none; }
+.mobile-view { display: block; }
+
 /* ─── Landing page responsive ─── */
 
 /* Nav */

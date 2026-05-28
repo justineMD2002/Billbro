@@ -54,12 +54,12 @@ export function TabBar({ active, onChange }: TabBarProps) {
     { id: 'txns',     label: 'Activity',   icon: 'list' },
     { id: 'add',      label: '',           icon: 'add',  center: true },
     { id: 'insights', label: 'Insights',   icon: 'chart' },
-    { id: 'cats',     label: 'Categories', icon: 'grid' },
+    { id: 'budgets',  label: 'Budgets',    icon: 'grid' },
   ];
 
   return (
     <div style={{
-      position: 'absolute', left: 16, right: 16, bottom: 16, zIndex: 30,
+      position: 'absolute', left: 16, right: 16, bottom: 8, zIndex: 30,
       borderRadius: 28, padding: '10px 12px',
       background: T.surface, boxShadow: T.cardShadow,
       display: 'flex', justifyContent: 'space-between', alignItems: 'center',

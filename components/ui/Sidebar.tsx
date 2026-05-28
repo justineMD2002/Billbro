@@ -39,16 +39,31 @@ function NavIcon({ icon, active }: { icon: string; active: boolean }) {
           <rect x="14" y="14" width="7" height="7" rx="2" />
         </svg>
       );
+    case 'lock':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+          <rect x="4" y="10" width="16" height="11" rx="2" fill={active ? 'currentColor' : 'none'}/>
+          <path d="M8 10V7a4 4 0 018 0v3"/>
+        </svg>
+      );
+    case 'gear':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      );
     default:
       return null;
   }
 }
 
 const NAV_ITEMS = [
-  { id: 'home',     label: 'Home',       icon: 'home',  href: '/app/home' },
-  { id: 'txns',     label: 'Activity',   icon: 'list',  href: '/app/txns' },
-  { id: 'insights', label: 'Insights',   icon: 'chart', href: '/app/insights' },
-  { id: 'cats',     label: 'Categories', icon: 'grid',  href: '/app/cats' },
+  { id: 'home',     label: 'Dashboard',  icon: 'home',  href: '/home' },
+  { id: 'txns',     label: 'Activity',   icon: 'list',  href: '/txns' },
+  { id: 'budgets',  label: 'Budgets',    icon: 'grid',  href: '/budgets' },
+  { id: 'loans',    label: 'Loans',      icon: 'lock',  href: '/loans' },
+  { id: 'insights', label: 'Insights',   icon: 'chart', href: '/insights' },
 ];
 
 export function Sidebar({ onAdd }: { onAdd: () => void }) {
@@ -57,7 +72,9 @@ export function Sidebar({ onAdd }: { onAdd: () => void }) {
 
   const activeId = pathname.includes('/txns') ? 'txns'
     : pathname.includes('/insights') ? 'insights'
-    : pathname.includes('/cats') ? 'cats'
+    : pathname.includes('/budgets') ? 'budgets'
+    : pathname.includes('/loans') ? 'loans'
+    : pathname.includes('/settings') ? 'settings'
     : 'home';
 
   return (
@@ -68,7 +85,6 @@ export function Sidebar({ onAdd }: { onAdd: () => void }) {
       borderRight: `1.5px solid ${T.surface2}`,
       padding: '28px 14px 24px',
     }}>
-      {/* Brand */}
       <div style={{ padding: '0 10px', marginBottom: 36 }}>
         <Logo size={30} textColor={T.ink} textSize={20} />
         <div style={{ fontSize: 11, color: T.muted, marginTop: 6, fontWeight: 500 }}>
@@ -76,7 +92,6 @@ export function Sidebar({ onAdd }: { onAdd: () => void }) {
         </div>
       </div>
 
-      {/* Nav items */}
       <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
         {NAV_ITEMS.map(item => {
           const isActive = activeId === item.id;
@@ -95,7 +110,6 @@ export function Sidebar({ onAdd }: { onAdd: () => void }) {
           );
         })}
 
-        {/* Add transaction button */}
         <button onClick={onAdd} style={{
           display: 'flex', alignItems: 'center', gap: 11,
           marginTop: 14, padding: '13px 12px', borderRadius: 14,
@@ -111,7 +125,18 @@ export function Sidebar({ onAdd }: { onAdd: () => void }) {
         </button>
       </nav>
 
-      {/* Dark mode toggle */}
+      <Link href="/settings" style={{
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '10px 12px', borderRadius: 14,
+        color: activeId === 'settings' ? T.accent : T.muted,
+        fontSize: 13, fontWeight: 500, textDecoration: 'none',
+        background: activeId === 'settings' ? `${T.accent}1A` : 'none',
+        marginBottom: 2,
+      }}>
+        <NavIcon icon="gear" active={activeId === 'settings'} />
+        Settings
+      </Link>
+
       <button onClick={toggleDark} style={{
         display: 'flex', alignItems: 'center', gap: 10,
         padding: '10px 12px', borderRadius: 14,

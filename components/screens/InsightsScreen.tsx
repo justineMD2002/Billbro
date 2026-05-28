@@ -138,13 +138,13 @@ export function InsightsScreen() {
       {/* HERO — Mascot presenting */}
       <div style={{ padding: '0 18px 14px' }}>
         <div style={{
-          borderRadius: 28, padding: '14px 14px 14px 0',
+          borderRadius: 28, padding: '14px 18px 14px 0',
           background: `linear-gradient(135deg, ${T.surface}, ${T.surface2})`,
-          boxShadow: T.cardShadow, display: 'flex', alignItems: 'center', gap: 6,
+          boxShadow: T.cardShadow, display: 'flex', alignItems: 'center', gap: 10,
           position: 'relative', overflow: 'hidden',
         }}>
           <div aria-hidden style={{ position: 'absolute', top: -30, left: 30, width: 120, height: 200, background: `radial-gradient(ellipse, ${T.pop}33, transparent 70%)`, pointerEvents: 'none' }} />
-          <div style={{ flexShrink: 0, marginLeft: -10 }}>
+          <div style={{ flexShrink: 0, marginLeft: 4 }}>
             <WalletBro expression="celebrate" size={110} accent={T.accent} accentDark={T.accentDeep} pop={T.pop} />
           </div>
           <div style={{ flex: 1 }}>

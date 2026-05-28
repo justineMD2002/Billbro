@@ -66,7 +66,7 @@ function AppShell({ children }: { children: React.ReactNode }) {
 
           <div className="app-tab-bar-wrap" style={{
             flexShrink: 0, position: 'relative',
-            height: 'calc(96px + env(safe-area-inset-bottom, 0px))',
+            height: 'calc(80px + env(safe-area-inset-bottom, 0px))',
             paddingBottom: 'env(safe-area-inset-bottom, 0px)',
           }}>
             <TabBar

@@ -23,9 +23,9 @@ export default function LandingPage() {
         <div className="lp-container lp-nav-inner">
           <div className="lp-logo">
             <div className="lp-logo-mark">
-              {/* <div style={{ transform: 'scale(0.5) translateY(2px)' }}>
+              <div style={{ transform: 'scale(0.5) translateY(2px)' }}>
                 <WalletBro expression="happy" size={70} accent="#C7F8EF" accentDark="#A0F0E0" pop="#FF4F92" animated={false} />
-              </div> */}
+              </div>
             </div>
             <span className="lp-logo-text">BillBro</span>
           </div>
@@ -35,7 +35,7 @@ export default function LandingPage() {
             <a href="#how">How it works</a>
             {/* <a href="#pricing">Pricing</a> */}
           </div>
-          <Link href="/signup" className="lp-btn lp-btn-primary lp-btn-sm">Get the app</Link>
+          {/* <Link href="/signup" className="lp-btn lp-btn-primary lp-btn-sm">Get the app</Link> */}
         </div>
       </nav>
 

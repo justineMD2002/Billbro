@@ -1,131 +1,318 @@
 import Link from 'next/link';
-import { LandingMascot } from '@/components/landing/LandingMascot';
-import { Logo } from '@/components/ui/Logo';
+import { WalletBro } from '@/components/mascot/WalletBro';
+import { BroGymLifter } from '@/components/mascot/GymBro';
+import { PhoneMock } from '@/components/landing/PhoneMock';
 
-const FEATURES = [
-  { icon: '📊', title: 'Salary cycle', desc: 'See exactly how much you can spend per day until your next paycheck.' },
-  { icon: '💸', title: 'Budget envelopes', desc: "Set monthly budgets per category. Bro tells you when you're pushing it." },
-  { icon: '🔒', title: 'Loan tracker', desc: 'Track loans with end dates, remaining balance, and monthly obligations.' },
-  { icon: '🧠', title: "Bro's tips", desc: 'Smart, no-BS advice on how to stretch what you have until payday.' },
-];
+function FeatIcon({ icon }: { icon: string }) {
+  const c = { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none' as const, stroke: 'currentColor', strokeWidth: 2.2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+  switch (icon) {
+    case 'lock': return <svg {...c}><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>;
+    case 'grid': return <svg {...c}><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>;
+    case 'split': return <svg {...c}><path d="M12 3v18M5 8l-2 2 2 2M19 8l2 2-2 2M3 10h6M15 10h6"/></svg>;
+    case 'brain': return <svg {...c}><path d="M9 3a3 3 0 00-3 3 3 3 0 00-1 5.8A3 3 0 007 17a3 3 0 005 1 3 3 0 005-1 3 3 0 002-5.2A3 3 0 0018 6a3 3 0 00-3-3 3 3 0 00-3 1.5A3 3 0 009 3z"/></svg>;
+    default: return null;
+  }
+}
 
 export default function LandingPage() {
   return (
-    <main style={{ minHeight: '100dvh', background: '#FFF7EC', fontFamily: 'var(--font-sora), system-ui' }}>
+    <div className="lp-root">
 
-      {/* Nav */}
-      <nav style={{
-        position: 'sticky', top: 0, zIndex: 10,
-        background: 'rgba(255,247,236,0.85)', backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-      }}>
-        <div className="landing-nav-inner">
-          <Logo size={32} textColor="#1B1638" textSize={20} />
-          <Link href="/login" style={{
-            padding: '10px 20px', borderRadius: 14, border: '1.5px solid #A88BFF',
-            color: '#A88BFF', fontSize: 14, fontWeight: 600,
-          }}>
-            Log in
-          </Link>
+      {/* NAV */}
+      <nav className="lp-nav">
+        <div className="lp-container lp-nav-inner">
+          <div className="lp-logo">
+            <div className="lp-logo-mark">
+              <div style={{ transform: 'scale(0.5) translateY(2px)' }}>
+                <WalletBro expression="happy" size={70} accent="#C7F8EF" accentDark="#A0F0E0" pop="#FF4F92" animated={false} />
+              </div>
+            </div>
+            <span className="lp-logo-text">BillBro</span>
+          </div>
+          <div className="lp-nav-links">
+            <a href="#features">Features</a>
+            <a href="#moods">Meet Bro</a>
+            <a href="#how">How it works</a>
+            <a href="#pricing">Pricing</a>
+          </div>
+          <Link href="/signup" className="lp-btn lp-btn-primary lp-btn-sm">Get the app</Link>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="landing-hero">
-        <div className="landing-hero-mascot">
-          <LandingMascot />
-        </div>
-
-        <div className="landing-hero-text">
-          <div style={{
-            display: 'inline-block', padding: '6px 14px', borderRadius: 99,
-            background: '#A88BFF1A', color: '#7B5BE0', fontSize: 13, fontWeight: 600,
-            letterSpacing: '0.04em', marginBottom: 20,
-          }}>
-            Your brother in budgeting 💪
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '0 0 12px' }}>
-            <Logo size={64} showText={false} />
-            <h1 style={{
-              fontFamily: 'var(--font-fraunces), serif',
-              fontSize: 'clamp(52px, 10vw, 80px)',
-              fontWeight: 700, color: '#1B1638', letterSpacing: '-0.04em', lineHeight: 0.95,
-              margin: 0,
-            }}>
-              BillBro
+      {/* HERO */}
+      <header className="lp-hero">
+        <div className="lp-blob lp-blob-1" />
+        <div className="lp-blob lp-blob-2" />
+        <div className="lp-container lp-hero-grid">
+          <div className="lp-hero-copy">
+            <div className="lp-pill">
+              <span className="lp-pill-dot" />
+              Built for the ₱ payday cycle
+            </div>
+            <h1 className="lp-h1">
+              Your <span className="lp-h1-accent">brother</span> in budgeting.
             </h1>
+            <p className="lp-sub">
+              BillBro watches your salary, loans, and budgets like a real bro — and tells you straight up how much you can spend each day till payday. No spreadsheets. No guilt. Just gains. 💪
+            </p>
+            <div className="lp-hero-actions">
+              <Link href="/signup" className="lp-btn lp-btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7a3 3 0 00-3 3v16a3 3 0 003 3h10a3 3 0 003-3V4a3 3 0 00-3-3zm-5 21a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zM18 18H6V4h12z"/></svg>
+                Download free
+              </Link>
+              <a href="#how" className="lp-btn lp-btn-ghost">See how it works →</a>
+            </div>
+            <div className="lp-hero-trust">
+              <span className="lp-stars">★★★★★</span>
+              <span>Loved by <b>12,000+</b> kabayan savers</span>
+            </div>
           </div>
-          <p style={{ fontFamily: 'var(--font-fraunces), serif', fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px, 3vw, 22px)', color: '#4A4368', opacity: 0.75, margin: '0 0 16px' }}>
-            your money, your rules.
-          </p>
-
-          <p style={{ fontSize: 17, color: '#4A4368', lineHeight: 1.6, maxWidth: 400, margin: '0 auto 36px' }}>
-            Track expenses, crush savings goals, and get real-time budget advice — all with a little bro energy.
-          </p>
-
-          <div className="landing-hero-buttons">
-            <Link href="/signup" className="landing-hero-cta" style={{
-              display: 'block',
-              padding: '18px 24px', borderRadius: 20,
-              background: 'linear-gradient(135deg, #A88BFF 0%, #7B5BE0 60%, #FF7A45 130%)',
-              color: '#fff', fontSize: 17, fontWeight: 700, textAlign: 'center',
-              boxShadow: '0 12px 32px rgba(123,91,224,0.35)',
-            }}>
-              Get started — it&apos;s free
-            </Link>
-            <Link href="/login" style={{ color: '#8A82A8', fontSize: 14, fontWeight: 500 }}>
-              Already a bro? Log in →
-            </Link>
+          <div className="lp-hero-visual">
+            <div className="lp-float lp-float-1">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div className="lp-float-icon lp-float-icon-bad">🍔</div>
+                <div>
+                  <div className="lp-float-label">Food budget</div>
+                  <div className="lp-float-sub lp-float-sub-bad">₱420 over · chill bro</div>
+                </div>
+              </div>
+            </div>
+            <div className="lp-float lp-float-2">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div className="lp-float-icon lp-float-icon-good">💪</div>
+                <div>
+                  <div className="lp-float-label">Saved ₱8,045</div>
+                  <div className="lp-float-sub lp-float-sub-good">+49% vs last month</div>
+                </div>
+              </div>
+            </div>
+            <PhoneMock w={272} />
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Features */}
-      <section className="landing-features">
-        <div className="landing-features-grid">
-          {FEATURES.map(f => (
-            <div key={f.title} style={{
-              background: '#fff', borderRadius: 22, padding: '20px 18px',
-              boxShadow: '0 6px 24px rgba(123,91,224,0.08)',
-            }}>
-              <div style={{ fontSize: 28, marginBottom: 10 }}>{f.icon}</div>
-              <div style={{ fontFamily: 'var(--font-fraunces), serif', fontSize: 17, fontWeight: 600, color: '#1B1638', marginBottom: 6 }}>
-                {f.title}
-              </div>
-              <div style={{ fontSize: 13, color: '#8A82A8', lineHeight: 1.5 }}>{f.desc}</div>
+      {/* TRUST STRIP */}
+      <section className="lp-trust">
+        <div className="lp-container lp-trust-grid">
+          {([
+            { v: '₱2.4M', k: 'tracked monthly' },
+            { v: '12K+', k: 'active bros' },
+            { v: '4.9★', k: 'app rating' },
+            { v: '₱8K', k: 'avg. saved / mo' },
+          ] as const).map(s => (
+            <div key={s.k} className="lp-trust-item">
+              <div className="lp-trust-v">{s.v}</div>
+              <div className="lp-trust-k">{s.k}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA banner */}
-      <section className="landing-cta-section">
-        <div style={{
-          borderRadius: 28, padding: '36px 28px',
-          background: 'linear-gradient(135deg, #A88BFF 0%, #7B5BE0 60%, #FF7A45 130%)',
-          color: '#fff', textAlign: 'center',
-          boxShadow: '0 20px 50px rgba(123,91,224,0.3)',
-        }}>
-          <div style={{ fontFamily: 'var(--font-fraunces), serif', fontSize: 28, fontWeight: 700, letterSpacing: '-0.03em', marginBottom: 12, lineHeight: 1.2 }}>
-            Ready to get your finances together?
+      {/* FEATURES */}
+      <section id="features" className="lp-section">
+        <div className="lp-container">
+          <div className="lp-section-head">
+            <div className="lp-eyebrow">Why BillBro hits different</div>
+            <h2 className="lp-h2">Not another boring budget app.</h2>
+            <p className="lp-section-sub">Bro thinks in <b>days till payday</b>, not abstract monthly totals. Here&apos;s what he&apos;s got your back on.</p>
           </div>
-          <Link href="/signup" style={{
-            display: 'inline-block', marginTop: 8,
-            padding: '16px 32px', borderRadius: 16,
-            background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(8px)',
-            color: '#fff', fontSize: 16, fontWeight: 700,
-            border: '1.5px solid rgba(255,255,255,0.4)',
-          }}>
-            Let&apos;s go 💪
-          </Link>
+          <div className="lp-features-grid">
+            <div className="lp-feature lp-feature-big lp-feature-gradient">
+              <div className="lp-feature-big-inner">
+                <div style={{ flex: 1 }}>
+                  <div className="lp-feature-tag lp-feature-tag-light">Salary-aware</div>
+                  <h3 className="lp-feature-title lp-feature-title-light">Knows your payday.<br />Paces your spending.</h3>
+                  <p className="lp-feature-body lp-feature-body-light">Log your salary once and Bro turns it into a daily allowance — &ldquo;₱566/day till June 26.&rdquo; Spend within it and you&apos;ll never hit the end-of-month panic again.</p>
+                </div>
+                <div className="lp-feature-big-art">
+                  <WalletBro expression="coaching" size={140} accent="#C7F8EF" accentDark="#A0F0E0" pop="#FF4F92" />
+                </div>
+              </div>
+            </div>
+            <div className="lp-feature">
+              <div className="lp-feature-icon lp-feature-icon-deep"><FeatIcon icon="lock" /></div>
+              <h3 className="lp-feature-title">Loans with finish lines</h3>
+              <p className="lp-feature-body">Car loan, phone installment — Bro tracks month 23 of 60, the balance left, and exactly when you&apos;re free.</p>
+            </div>
+            <div className="lp-feature">
+              <div className="lp-feature-icon lp-feature-icon-pop"><FeatIcon icon="grid" /></div>
+              <h3 className="lp-feature-title">Envelopes that talk back</h3>
+              <p className="lp-feature-body">Set a budget per category. Go over and Bro calls it — then tells you how to claw it back before payday.</p>
+            </div>
+            <div className="lp-feature">
+              <div className="lp-feature-icon lp-feature-icon-good"><FeatIcon icon="split" /></div>
+              <h3 className="lp-feature-title">One-time or budgeted</h3>
+              <p className="lp-feature-body">A random restaurant? Log it once. Coffee you do daily? Bro counts it against your envelope automatically.</p>
+            </div>
+            <div className="lp-feature">
+              <div className="lp-feature-icon lp-feature-icon-accent"><FeatIcon icon="brain" /></div>
+              <h3 className="lp-feature-title">Bro&apos;s got the plan</h3>
+              <p className="lp-feature-body">Real, specific advice: &ldquo;Skip 1 Grab + 2 coffees this week to break even.&rdquo; Coaching, not shaming.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer style={{ padding: '20px 28px 40px', textAlign: 'center', color: '#8A82A8', fontSize: 13 }}>
-        BillBro · your brother in budgeting · ₱ PHP
+      {/* MOODS */}
+      <section id="moods" className="lp-section lp-section-alt">
+        <div className="lp-container">
+          <div className="lp-section-head">
+            <div className="lp-eyebrow">Meet WalletBro</div>
+            <h2 className="lp-h2">He reacts to every peso.</h2>
+            <p className="lp-section-sub">A pocket-shaped buddy with a friendship bracelet who&apos;s hyped when you save and sus when you don&apos;t. He <i>feels</i> your spending so you actually pay attention.</p>
+          </div>
+          <div className="lp-moods-grid">
+            {([
+              { exp: 'hyped', cap: 'GOAL HIT 💪' },
+              { exp: 'sus', cap: 'u sure about that?' },
+              { exp: 'coaching', cap: 'tip: 50/30/20' },
+              { exp: 'celebrate', cap: 'BRO LFG 🎉' },
+              { exp: 'worried', cap: 'check ur food spend' },
+              { exp: 'laughing', cap: 'lmao the Grab bill' },
+              { exp: 'sleepy', cap: 'chill week, nice' },
+              { exp: 'happy', cap: "we're on track 👊" },
+            ] as const).map(m => (
+              <div key={m.exp} className="lp-mood-card">
+                <WalletBro expression={m.exp} size={120} accent="#16C5A8" accentDark="#0E9A82" pop="#FF4F92" />
+                <div className="lp-mood-cap">&ldquo;{m.cap}&rdquo;</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how" className="lp-section">
+        <div className="lp-container">
+          <div className="lp-section-head">
+            <div className="lp-eyebrow">How it works</div>
+            <h2 className="lp-h2">Three taps to financial bro-hood.</h2>
+          </div>
+          <div className="lp-steps-grid">
+            {([
+              { n: '01', title: 'Drop your salary', body: 'Tell Bro when you get paid and how much. He builds your cycle instantly.', exp: 'happy' },
+              { n: '02', title: 'Log as you go', body: 'One-time, budgeted, or a loan with an end date — Bro sorts it and reacts.', exp: 'coaching' },
+              { n: '03', title: 'Spend on a plan', body: 'Follow your daily allowance. Hit payday with money to spare. Repeat.', exp: 'hyped' },
+            ] as const).map((s, i) => (
+              <div key={s.n} className="lp-step">
+                <div className="lp-step-num">{s.n}</div>
+                <div className="lp-step-art">
+                  <WalletBro expression={s.exp} size={104} accent="#16C5A8" accentDark="#0E9A82" pop="#FF4F92" />
+                </div>
+                <h3 className="lp-step-title">{s.title}</h3>
+                <p className="lp-step-body">{s.body}</p>
+                {i < 2 && <div className="lp-step-arrow">→</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section id="pricing" className="lp-section">
+        <div className="lp-container">
+          <div className="lp-section-head">
+            <div className="lp-eyebrow">Pricing</div>
+            <h2 className="lp-h2">Free to start. Bro doesn&apos;t gatekeep.</h2>
+          </div>
+          <div className="lp-pricing-grid">
+            <div className="lp-price-card lp-price-card-free">
+              <div className="lp-price-name">Lil&apos; Bro</div>
+              <div className="lp-price-amt">₱0<span>/forever</span></div>
+              <ul className="lp-price-feats">
+                <li>Salary cycle + daily allowance</li>
+                <li>Unlimited transactions</li>
+                <li>3 budget envelopes</li>
+                <li>WalletBro reactions</li>
+              </ul>
+              <Link href="/signup" className="lp-btn lp-btn-ghost lp-btn-block">Start free</Link>
+            </div>
+            <div className="lp-price-card lp-price-card-feat">
+              <div className="lp-price-badge">Most gains</div>
+              <div className="lp-price-name lp-price-name-light">Big Bro</div>
+              <div className="lp-price-amt lp-price-amt-light">₱149<span className="lp-price-period-light">/month</span></div>
+              <ul className="lp-price-feats lp-price-feats-light">
+                <li>Everything in Lil&apos; Bro</li>
+                <li>Unlimited loans + bills tracking</li>
+                <li>Unlimited envelopes</li>
+                <li>AI coaching + savings goals</li>
+                <li>Multi-currency (OFW mode)</li>
+              </ul>
+              <Link href="/signup" className="lp-btn lp-btn-block lp-btn-white">Go Big Bro</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="download" className="lp-section">
+        <div className="lp-container">
+          <div className="lp-cta">
+            <div className="lp-cta-blob" />
+            <div className="lp-cta-inner">
+              <div className="lp-cta-art">
+                <BroGymLifter size={150} accent="#16C5A8" accentDark="#0E9A82" pop="#FF4F92" />
+              </div>
+              <div className="lp-cta-copy">
+                <h2 className="lp-cta-title">Your wallet&apos;s about to get swole.</h2>
+                <p className="lp-cta-sub">Download BillBro and let your financial brother do the heavy lifting. Free forever to start.</p>
+                <div className="lp-cta-actions">
+                  <a href="#" className="lp-store-badge">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7a3 3 0 00-3 3v16a3 3 0 003 3h10a3 3 0 003-3V4a3 3 0 00-3-3zm-5 21a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zM18 18H6V4h12z"/></svg>
+                    <span><small>Download on the</small>App Store</span>
+                  </a>
+                  <a href="#" className="lp-store-badge">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l16 9-16 9V3z"/></svg>
+                    <span><small>Get it on</small>Google Play</span>
+                  </a>
+                  <Link href="/signup" className="lp-btn lp-btn-ghost-light">Sign up on web →</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="lp-footer">
+        <div className="lp-container lp-footer-inner">
+          <div className="lp-footer-brand">
+            <div className="lp-logo">
+              <div className="lp-logo-mark">
+                <div style={{ transform: 'scale(0.5) translateY(2px)' }}>
+                  <WalletBro expression="happy" size={70} accent="#C7F8EF" accentDark="#A0F0E0" pop="#FF4F92" animated={false} />
+                </div>
+              </div>
+              <span className="lp-logo-text">BillBro</span>
+            </div>
+            <p className="lp-footer-tag">Your brother in budgeting. Made with 💜 in Manila.</p>
+          </div>
+          <div className="lp-footer-cols">
+            <div className="lp-footer-col">
+              <h4>Product</h4>
+              <a href="#features">Features</a>
+              <a href="#pricing">Pricing</a>
+              <a href="#moods">Meet Bro</a>
+            </div>
+            <div className="lp-footer-col">
+              <h4>Company</h4>
+              <a href="#">About</a>
+              <a href="#">Blog</a>
+              <a href="#">Careers</a>
+            </div>
+            <div className="lp-footer-col">
+              <h4>Legal</h4>
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+              <a href="#">Security</a>
+            </div>
+          </div>
+        </div>
+        <div className="lp-container lp-footer-bottom">
+          <span>© 2026 BillBro. All gains reserved.</span>
+          <span>₱ Built for Filipinos</span>
+        </div>
       </footer>
-    </main>
+    </div>
   );
 }

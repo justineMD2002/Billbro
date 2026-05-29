@@ -46,7 +46,7 @@ export function TransactionsScreen() {
   }, {});
 
   return (
-    <div className="txns-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 126 }}>
+    <div className="md:pb-10!" style={{ background: T.bg, minHeight: '100%', paddingBottom: 126 }}>
       <Header subtitle="May 2026 · 32 transactions" title="Activity" />
 
       {/* Search bar with WalletBro */}
@@ -77,10 +77,10 @@ export function TransactionsScreen() {
       </div>
 
       {/* ── Desktop: [filters sidebar | list]; Mobile: stack ── */}
-      <div className="txns-layout">
+      <div className="md:grid md:grid-cols-[180px_1fr] md:items-start">
 
         {/* Filters sidebar */}
-        <div className="txns-sidebar">
+        <div className="hidden md:block md:pt-1 md:sticky md:top-0">
           {/* Month filter */}
           <div style={{ padding: '0 18px 14px' }}>
             <div style={{ fontFamily: 'Sora', fontWeight: 700, fontSize: 10, color: T.muted, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8 }}>Month</div>
@@ -109,7 +109,7 @@ export function TransactionsScreen() {
         </div>
 
         {/* Mobile-only: horizontal month strip + pill filters */}
-        <div className="txns-mobile-filters">
+        <div className="md:hidden">
           <div style={{ padding: '0 18px 14px', position: 'relative' }}>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none' }}>
               {['Mar', 'Apr', 'May', 'Jun', 'Jul'].map((m) => (
@@ -135,7 +135,7 @@ export function TransactionsScreen() {
         </div>
 
         {/* Grouped list */}
-        <div className="txns-list" style={{ padding: '0 18px' }}>
+        <div className="md:[padding:0_18px_0_0]!" style={{ padding: '0 18px' }}>
           {Object.entries(grouped).map(([day, items]) => (
             <div key={day} style={{ marginBottom: 14 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 4px 8px' }}>

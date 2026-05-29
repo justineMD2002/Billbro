@@ -181,19 +181,23 @@ export function AddSheet({ onClose }: AddSheetProps) {
   const endLabel = endDate.toLocaleDateString('en-PH', { month: 'short', year: 'numeric' });
 
   return (
-    <div className="add-sheet-overlay" style={{
-      position: 'absolute', inset: 0, zIndex: 100,
-      background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(6px)',
-      display: 'flex', alignItems: 'flex-end',
-    }} onClick={onClose}>
-      <div className="add-sheet-panel" onClick={e => e.stopPropagation()} style={{
-        background: T.bg, width: '100%', borderRadius: '32px 32px 0 0',
-        padding: '14px 18px calc(24px + env(safe-area-inset-bottom, 0px))',
-        maxHeight: 'calc(100% - 72px)', display: 'flex', flexDirection: 'column',
-        boxShadow: '0 -20px 60px rgba(0,0,0,0.3)',
-        animation: 'sheetIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1)',
-        overflowY: 'auto',
-      }}>
+    <div
+      className="absolute inset-0 z-[100] flex items-end md:items-center! md:justify-center!"
+      style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(6px)' }}
+      onClick={onClose}
+    >
+      <div
+        className="w-full md:w-[460px]! md:max-w-[min(460px,94vw)]! md:max-h-[88vh]! md:rounded-[28px]! flex flex-col overflow-y-auto"
+        onClick={e => e.stopPropagation()}
+        style={{
+          background: T.bg,
+          borderRadius: '32px 32px 0 0',
+          padding: '14px 18px calc(24px + env(safe-area-inset-bottom, 0px))',
+          maxHeight: 'calc(100% - 72px)',
+          boxShadow: '0 -20px 60px rgba(0,0,0,0.3)',
+          animation: 'sheetIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1)',
+        }}
+      >
         {/* grab handle */}
         <div style={{ width: 44, height: 5, borderRadius: 99, background: T.muted, opacity: 0.4, margin: '4px auto 14px' }} />
 

@@ -38,37 +38,33 @@ function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="app-shell-bg" style={{ position: 'fixed', inset: 0, background: T.bg }}>
-      <div className="app-shell-frame" style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div className="fixed inset-0" style={{ background: T.bg }}>
+      <div className="h-full w-full flex flex-col md:flex-row overflow-hidden">
 
-        {/* hidden on mobile, shown on desktop via CSS */}
-        <div className="app-sidebar-slot" style={{ display: 'none' }}>
+        {/* hidden on mobile, shown on desktop */}
+        <div className="hidden md:flex md:w-[220px] md:shrink-0 md:h-full">
           <Sidebar onAdd={() => setSheetOpen(true)} />
         </div>
 
         {/* Main area: content + tab bar */}
-        <div className="app-main-area" style={{
-          flex: 1, display: 'flex', flexDirection: 'column',
-          overflow: 'hidden', minHeight: 0,
-          position: 'relative', background: T.bg,
-        }}>
-          <div className="web-topbar-wrap">
-            <WebTopBar />
-          </div>
+        <div className="flex-1 flex flex-col overflow-hidden min-h-0 relative" style={{ background: T.bg }}>
+          <WebTopBar />
 
-          <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'none' }}>
-            <div className="screen-content-wrap">
+          <div className="flex-1 overflow-y-auto overscroll-none" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div className="md:max-w-[720px] md:mx-auto md:px-2">
               {children}
             </div>
           </div>
 
           {sheetOpen && <AddSheet onClose={() => setSheetOpen(false)} />}
 
-          <div className="app-tab-bar-wrap" style={{
-            flexShrink: 0, position: 'relative',
-            height: 'calc(80px + env(safe-area-inset-bottom, 0px))',
-            paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-          }}>
+          <div
+            className="md:hidden shrink-0 relative"
+            style={{
+              height: 'calc(80px + env(safe-area-inset-bottom, 0px))',
+              paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+            }}
+          >
             <TabBar
               active={sheetOpen ? 'add' : tabFromPath()}
               onChange={handleTabChange}

@@ -16,7 +16,7 @@ export function CategoriesScreen() {
   const topCat = sorted[0];
 
   return (
-    <div className="cats-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 110 }}>
+    <div className="md:pb-10!" style={{ background: T.bg, minHeight: '100%', paddingBottom: 110 }}>
       <Header subtitle="Spending by category" title="Categories" />
 
       {/* Month selector */}
@@ -39,10 +39,10 @@ export function CategoriesScreen() {
       </div>
 
       {/* ── Desktop: [hero + summary left | 2-col cards right]; Mobile: stack ── */}
-      <div className="cats-grid">
+      <div className="md:grid md:grid-cols-2 md:gap-x-1 md:items-start md:px-1">
 
         {/* Left column: top category hero */}
-        <div className="cats-col-left">
+        <div>
           <div style={{ padding: '0 18px 14px' }}>
             <div style={{
               borderRadius: 24, padding: '14px 12px 14px 0',
@@ -69,8 +69,8 @@ export function CategoriesScreen() {
         </div>
 
         {/* Right column: category cards in a 2-col grid on desktop */}
-        <div className="cats-col-right">
-          <div className="cats-cards-grid" style={{ padding: '0 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div className="md:pb-[14px]">
+          <div className="md:grid! md:grid-cols-2! md:[padding:0_14px_0_0]!" style={{ padding: '0 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
             {sorted.map(c => {
               const ratio = c.spent / c.budget;
               const over = ratio > 1;

@@ -127,7 +127,7 @@ export function InsightsScreen() {
   };
 
   return (
-    <div className="insights-screen" style={{ background: T.bg, minHeight: '100%', paddingBottom: 126, position: 'relative' }}>
+    <div className="md:pb-10!" style={{ background: T.bg, minHeight: '100%', paddingBottom: 126, position: 'relative' }}>
       {/* decorative confetti */}
       <div aria-hidden style={{ position: 'absolute', top: 110, left: 24, width: 6, height: 6, background: T.pop, borderRadius: 2, transform: 'rotate(20deg)' }} />
       <div aria-hidden style={{ position: 'absolute', top: 80, right: 30, width: 8, height: 4, background: T.accent, borderRadius: 2, transform: 'rotate(-15deg)' }} />
@@ -160,7 +160,7 @@ export function InsightsScreen() {
       </div>
 
       {/* ── Desktop: [donut | trend] side-by-side; Mobile: stack ── */}
-      <div className="insights-charts-grid">
+      <div className="md:grid md:grid-cols-2 md:gap-x-1 md:items-start md:px-1">
 
         {/* DONUT — Category breakdown */}
         <div>
@@ -211,7 +211,7 @@ export function InsightsScreen() {
       <div style={{ padding: '4px 22px 8px' }}>
         <SectionLabel>Bro&apos;s tips</SectionLabel>
       </div>
-      <div className="tips-grid" style={{ padding: '0 18px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="md:grid! md:grid-cols-2! md:gap-[10px]! md:px-[22px]! md:pb-[14px]!" style={{ padding: '0 18px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <SuggestionCard mood="coaching"
           tag="PLAN" tagColor={T.accent}
           title={`${peso(dailyAllowance())}/day until next payday`}

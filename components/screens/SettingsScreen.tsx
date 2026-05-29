@@ -36,7 +36,7 @@ export function SettingsScreen() {
   return (
     <div style={{ background: T.bg, minHeight: '100%', paddingBottom: 110 }}>
       {/* Header */}
-      <div className="screen-header" style={{ padding: 'calc(env(safe-area-inset-top, 44px) + 20px) 22px 12px', display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="flex items-center gap-[10px] md:[padding-top:32px]!" style={{ padding: 'calc(env(safe-area-inset-top, 44px) + 20px) 22px 12px' }}>
         <button onClick={() => router.back()} style={{
           width: 38, height: 38, borderRadius: 12, border: 'none', cursor: 'pointer',
           background: T.surface2, color: T.ink,

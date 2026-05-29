@@ -33,7 +33,7 @@ export default function LandingPage() {
             <a href="#features">Features</a>
             <a href="#moods">Meet Bro</a>
             <a href="#how">How it works</a>
-            <a href="#pricing">Pricing</a>
+            {/* <a href="#pricing">Pricing</a> */}
           </div>
           <Link href="/signup" className="lp-btn lp-btn-primary lp-btn-sm">Get the app</Link>
         </div>
@@ -45,10 +45,10 @@ export default function LandingPage() {
         <div className="lp-blob lp-blob-2" />
         <div className="lp-container lp-hero-grid">
           <div className="lp-hero-copy">
-            <div className="lp-pill">
+            {/* <div className="lp-pill">
               <span className="lp-pill-dot" />
               Built for the ₱ payday cycle
-            </div>
+            </div> */}
             <h1 className="lp-h1">
               Your <span className="lp-h1-accent">brother</span> in budgeting.
             </h1>
@@ -56,16 +56,16 @@ export default function LandingPage() {
               BillBro watches your salary, loans, and budgets like a real bro — and tells you straight up how much you can spend each day till payday. No spreadsheets. No guilt. Just gains. 💪
             </p>
             <div className="lp-hero-actions">
-              <Link href="/signup" className="lp-btn lp-btn-primary">
+              {/* <Link href="/signup" className="lp-btn lp-btn-primary">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7a3 3 0 00-3 3v16a3 3 0 003 3h10a3 3 0 003-3V4a3 3 0 00-3-3zm-5 21a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zM18 18H6V4h12z"/></svg>
                 Download free
-              </Link>
+              </Link> */}
               <a href="#how" className="lp-btn lp-btn-ghost">See how it works →</a>
             </div>
-            <div className="lp-hero-trust">
+            {/* <div className="lp-hero-trust">
               <span className="lp-stars">★★★★★</span>
               <span>Loved by <b>12,000+</b> kabayan savers</span>
-            </div>
+            </div> */}
           </div>
           <div className="lp-hero-visual">
             <div className="lp-float lp-float-1">
@@ -92,7 +92,7 @@ export default function LandingPage() {
       </header>
 
       {/* TRUST STRIP */}
-      <section className="lp-trust">
+      {/* <section className="lp-trust">
         <div className="lp-container lp-trust-grid">
           {([
             { v: '₱2.4M', k: 'tracked monthly' },
@@ -106,7 +106,7 @@ export default function LandingPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* FEATURES */}
       <section id="features" className="lp-section">
@@ -209,7 +209,7 @@ export default function LandingPage() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="lp-section">
+      {/* <section id="pricing" className="lp-section">
         <div className="lp-container">
           <div className="lp-section-head">
             <div className="lp-eyebrow">Pricing</div>
@@ -242,7 +242,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA */}
       <section id="download" className="lp-section">
@@ -257,14 +257,14 @@ export default function LandingPage() {
                 <h2 className="lp-cta-title">Your wallet&apos;s about to get swole.</h2>
                 <p className="lp-cta-sub">Download BillBro and let your financial brother do the heavy lifting. Free forever to start.</p>
                 <div className="lp-cta-actions">
-                  <a href="#" className="lp-store-badge">
+                  {/* <a href="#" className="lp-store-badge">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7a3 3 0 00-3 3v16a3 3 0 003 3h10a3 3 0 003-3V4a3 3 0 00-3-3zm-5 21a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zM18 18H6V4h12z"/></svg>
                     <span><small>Download on the</small>App Store</span>
                   </a>
                   <a href="#" className="lp-store-badge">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l16 9-16 9V3z"/></svg>
                     <span><small>Get it on</small>Google Play</span>
-                  </a>
+                  </a> */}
                   <Link href="/signup" className="lp-btn lp-btn-ghost-light">Sign up on web →</Link>
                 </div>
               </div>
@@ -285,7 +285,7 @@ export default function LandingPage() {
               </div>
               <span className="lp-logo-text">BillBro</span>
             </div>
-            <p className="lp-footer-tag">Your brother in budgeting. Made with 💜 in Manila.</p>
+            <p className="lp-footer-tag">Your brother in budgeting.</p>
           </div>
           <div className="lp-footer-cols">
             <div className="lp-footer-col">
@@ -309,8 +309,8 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="lp-container lp-footer-bottom">
-          <span>© 2026 BillBro. All gains reserved.</span>
-          <span>₱ Built for Filipinos</span>
+          <span>© 2026 KeanuMD. All rights reserved.</span>
+          {/* <span>₱ Built for Filipinos</span> */}
         </div>
       </footer>
     </div>

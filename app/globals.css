@@ -206,6 +206,7 @@ textarea { touch-action: manipulation; -webkit-user-select: auto; user-select: a
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid #E5F8F2;
+  padding-top: env(safe-area-inset-top);
 }
 .lp-nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .lp-logo { display: flex; align-items: center; gap: 10px; }

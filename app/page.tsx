@@ -35,7 +35,7 @@ export default function LandingPage() {
             <a href="#how">How it works</a>
             {/* <a href="#pricing">Pricing</a> */}
           </div>
-          {/* <Link href="/signup" className="lp-btn lp-btn-primary lp-btn-sm">Get the app</Link> */}
+          <Link href="/signup" className="lp-btn lp-btn-primary lp-btn-sm">Get Started</Link>
         </div>
       </nav>
 

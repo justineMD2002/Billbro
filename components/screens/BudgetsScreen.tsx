@@ -18,7 +18,7 @@ export function BudgetsScreen() {
     : `${overBudgets.length} envelope${overBudgets.length > 1 ? 's' : ''} over budget — cool it, bro.`;
 
   return (
-    <div style={{ background: T.bg, minHeight: '100%', paddingBottom: 110 }}>
+    <div style={{ background: T.bg, minHeight: '100%', paddingBottom: 110, overflowX: 'hidden' }}>
       <Header title="Budgets" subtitle="May 2026 · envelope tracking" />
 
       {/* Bro card */}
@@ -42,7 +42,7 @@ export function BudgetsScreen() {
       <div style={{ padding: '4px 22px 8px' }}>
         <SectionLabel>Envelopes</SectionLabel>
       </div>
-      <div style={{ padding: '0 18px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2" style={{ padding: '0 18px', gap: 12 }}>
         {BUDGETS.map(b => {
           const cat = CATEGORIES[b.cat];
           const ratio = b.spent / b.monthly;

@@ -48,9 +48,9 @@ function AppShell({ children }: { children: React.ReactNode }) {
 
         {/* Main area: content + tab bar */}
         <div className="flex-1 flex flex-col overflow-hidden min-h-0 relative" style={{ background: T.bg }}>
-          <WebTopBar />
+          <div className="hidden md:block"><WebTopBar /></div>
 
-          <div className="flex-1 overflow-y-auto overscroll-none" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <div className="flex-1 overflow-y-auto overflow-x-hidden overscroll-none" style={{ WebkitOverflowScrolling: 'touch' }}>
             <div className="md:max-w-[720px] md:mx-auto md:px-2">
               {children}
             </div>

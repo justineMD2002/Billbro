@@ -36,7 +36,7 @@ export function Header({ title, subtitle, right }: HeaderProps) {
   }, [open]);
 
   return (
-    <div className="flex items-end justify-between gap-[10px] md:[padding-top:32px]!" style={{ padding: 'calc(env(safe-area-inset-top, 44px) + 20px) 22px 12px' }}>
+    <div className="flex items-end justify-between gap-[10px] md:[padding-top:32px]!" style={{ padding: 'calc(max(env(safe-area-inset-top, 0px), 44px) + 16px) 20px 12px' }}>
       <div style={{ minWidth: 0, flex: 1 }}>
         <div style={{ fontFamily: 'Sora, system-ui', fontWeight: 500, fontSize: 13, color: T.muted, letterSpacing: '0.02em' }}>{subtitle}</div>
         <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 600, fontSize: 26, color: T.ink, letterSpacing: '-0.02em', lineHeight: 1.1 }}>{title}</div>
